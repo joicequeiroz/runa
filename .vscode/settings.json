@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": "env\\Scripts\\python.exe"
+    "name": "Python: Behave current file",
+    "type": "python",
+    "request": "launch",
+    "module": "behave",
+    "console": "integratedTerminal",
+    "args": [
+        "-D","browser=chrome","${file}"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true
 }
