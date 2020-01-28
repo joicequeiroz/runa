@@ -1,3 +1,4 @@
+@inv_login
 Feature: Login
 
     To value invalid Login
@@ -8,7 +9,7 @@ Feature: Login
         Given I open the "<url>" url
         When I go to "Login" page
         When I do the invalid login with credentials "<email>" and "<password>"
-        Then I should not be logged in
+        Then I should be see the following "<message>"
         Examples:
-            | url                               | email                 | password               |
-            | http://automation.runademos.info/ | "joice.qa@runahr.com" | "SuperSecretPassword!" |
+            | url                               | email               | password             | message                                                        |
+            | http://automation.runademos.info/ | joice.qa@runahr.com | SuperSecretPassword! | No se inició sesión. Verifique que la contraseña sea correcta. |

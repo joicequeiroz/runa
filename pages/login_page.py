@@ -1,5 +1,3 @@
-import time
-
 from framework.webapp import WebBrowser
 from maps.login_map import LoginMap
 
@@ -20,3 +18,8 @@ class LoginPage(WebBrowser):
         message = self.wait_element(self.login_map.login_message, timeout=50)
         self.TakeScreenshot('Check it is logged')
         return "You logged into a Runa" in message.text
+
+    def is_not_logged(self):
+        message = self.wait_element(self.login_map.invalid_login, timeout=50)
+        self.TakeScreenshot('Check it is not logged')
+        return "You not logged into a Runa" in message.text

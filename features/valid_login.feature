@@ -1,4 +1,4 @@
-@login
+@valid_login
 Feature: Login
 
     To value Login
