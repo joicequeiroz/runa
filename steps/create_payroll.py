@@ -13,7 +13,7 @@ def step_impl_create_payroll(context):
 @when(u'I find the payroll group assigned to me')
 def step_impl_get_group(context):
     payroll_page = PayrollPage(context)
-    payroll_page.group("Grupo 1")
+    payroll_page.group()
 
 
 @when(u'I inform the stardate')

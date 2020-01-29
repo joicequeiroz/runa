@@ -179,3 +179,17 @@ class WebBrowser():
             alert_obj.accept()
         elif action == 'cancel':
             alert_obj.dismiss()
+
+    def IFrameHandler(self, iframe_tag="iframe", element=""):
+        elements = self.driver.find_elements_by_tag_name(iframe_tag)
+        for e in range(len(elements)):
+            self.driver.switch_to.default_content()
+            iframe = self.driver.find_elements_by_tag_name("iframe")[e]
+            self.driver.switch_to.frame(iframe)
+            self.log.info("switched to iframe...\n")
+            if len(self.driver.find_elements_by_xpath(element)) > 0:
+                print("Found element in iframe...\n")
+                break
+                
+    def changeWindow(self, num):
+        self.driver.window_handles[num]
