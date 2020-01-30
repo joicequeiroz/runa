@@ -19,7 +19,7 @@ def step_impl_get_group(context):
 @when(u'I inform the stardate')
 def step_impl_insert_startdate(context):
     payroll_page = PayrollPage(context)
-    payroll_page.group()
+    payroll_page.startdate()
 
 
 @then(u'the payroll should be generated automatically')

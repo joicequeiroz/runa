@@ -16,6 +16,9 @@ python -m pip install
 pip install -r requeriments.txt
 pip install flake8
 
+### Step 4:
+In the file environment.py, got to BrowserSetUp method, and chance the path for your preference. This method is responsable to excute browser informed in command line.
+
 ### Running automated test cases
 #### Run all test cases using Chrome
     <blockquote>$ behave -D browser=chrome</blockquote>
@@ -31,6 +34,9 @@ However, my strategy for getting the elements were using Xpath.
 
 It was a great challenge, and I know I still have a lot to learn and develop with that language.
 I want to thank you for the opportunity to participate in this process and put my knowledge into practice.
+
+### Suggestions for improvement
+1 - In the "Rango de incidencias" field, in the "Nueva Nomina Manual" screen, the field should display the range with the date previously selected in the "Fecha de inicio" field.
 
 ### Bugs found
 Test Case | Expected Results | Actual Results | Severity

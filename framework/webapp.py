@@ -40,7 +40,7 @@ class WebBrowser():
         return el
 
     def wait_element(self, element, timeout=10):
-        """Espera o elemento ser exibido na tela pelo tempo definido pelo usuário    
+        """Espera o elemento ser exibido na tela pelo tempo definido pelo usuário
 
         @param locator_type(str): tipo de locator usado na busca
         @param locator(str): identificador do elemento
@@ -94,7 +94,7 @@ class WebBrowser():
             raise
 
     def select_element_by_text(self, element, text=""):
-        """Seleciona o elemento em um menu do tipo select pelo atributo texto    
+        """Seleciona o elemento em um menu do tipo select pelo atributo texto
 
         @param locator_type(str): tipo de locator usado na busca
         @param locator(str): identificador do elemento
@@ -112,10 +112,10 @@ class WebBrowser():
 
     def select_element_by_index(self, element, index=0):
         """select element passing index argument
-        
+
         Arguments:
             element {[webelement]}
-        
+
         Keyword Arguments:
             index {int} (default: {0})
         """
@@ -131,7 +131,7 @@ class WebBrowser():
 
     def is_element_present(self, element):
         """Verifica se o elemento está presente. Retorna true caso esteja
-        e false caso não.    
+        e false caso não.
 
         @param locator_type(str): tipo de locator usado na busca
         @param locator(str): identificador do elemento
@@ -190,6 +190,27 @@ class WebBrowser():
             if len(self.driver.find_elements_by_xpath(element)) > 0:
                 print("Found element in iframe...\n")
                 break
-                
+
     def changeWindow(self, num):
         self.driver.window_handles[num]
+
+    def SpecialClick(self, locatorType="xpath", locator=""):
+        element = self.wait_element(locatorType, locator)
+        self.driver.execute_script('arguments[0].click();', element)
+
+    def send_multiple_keys(self, element, text=[]):
+        """Envia texto ao elemento
+
+        @param locator_type(str): tipo de locator usado na busca
+        @param locator(str): identificador do elemento
+        @param text(str)
+        """
+        try:
+            element = self.get_element(element)
+            for t in text:
+                element.send_keys(t)
+            self.log.info("Keys sent to: ", element)
+        except ElementNotFoundException:
+            self.log.error("Could not send keys to element: ", element)
+            print_stack()
+            raise
