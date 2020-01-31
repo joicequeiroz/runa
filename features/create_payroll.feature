@@ -10,8 +10,7 @@ Feature: Payroll
         When I go to "Login" page
         And I do the valid login with credentials "<email>" and "<password>"
         And I want to create a new Payroll
-        And I find the payroll group assigned to me
-        And I inform the stardate
+        And I fill in required fields
         Then the payroll should be generated automatically
         Examples:
             | url                               | email                          | password |

@@ -18,7 +18,8 @@ class PayrollPage(WebBrowser):
 
     def close_video(self):
         time.sleep(4)
-        close = self.driver.find_elements_by_xpath(self.payroll_map.close_video)
+        close = self.driver.find_elements_by_xpath(
+            self.payroll_map.close_video)
         close = close[-1]
         close.click()
         time.sleep(2)
@@ -29,32 +30,57 @@ class PayrollPage(WebBrowser):
         self.click_on(self.payroll_map.btn_new)
         self.TakeScreenshot('click_new')
 
-    def group(self):
+    def set_date(self, element, date):
+        time.sleep(2)
+        cont = 0
+        while (cont < 10):
+            self.send_keys(element, date[cont])
+            cont = cont + 1
+        time.sleep(2)
+
+    def fill_in_payroll(self):
         time.sleep(4)
         self.send_keys(self.payroll_map.group, "Grupo 1")
         time.sleep(2)
-        self.send_multiple_keys(self.payroll_map.group, [Keys.TAB, Keys.TAB, "01/06/2019", Keys.ENTER, Keys.TAB, "31/05/2019", Keys.TAB])
+        self.send_multiple_keys(self.payroll_map.group,
+                                [Keys.TAB, Keys.TAB, "01/06/2019", Keys.TAB])
         time.sleep(2)
-        # self.send_multiple_keys(self.payroll_map.startdate_incidence, ["31/05/2019", Keys.TAB])
-        # time.sleep(2)
-        # self.send_multiple_keys(self.payroll_map.enddate_incidence, ["06/06/2019", Keys.TAB])
+        self.set_date(self.payroll_map.stardate_incidence, "31/05/2019")
+        self.set_date(self.payroll_map.endate_incidence, "06/06/2019")
         self.click_on(self.payroll_map.btn_sub)
-        self.TakeScreenshot('select group')
+        time.sleep(5)
 
-    # def startdate(self, date):
-    #     time.sleep(4)
-    #     date = self.driver.find_elements_by_xpath("//*[@id='start_date']/input[value='01/06/2019']")
-    #     date.click()
-        # self.execute_script("arguments[0].value='01/06/2019';", date)
-        # self.send_keys(self.payroll_map.startdate, "01/06/2019")
-        # time.sleep(2)
-        # self.send_keys(self.payroll_map.input_startate, Keys.TAB)
-        # time.sleep(2)
-        # self.send_keys(self.payroll_map.input_startate, Keys.TAB)
-        # time.sleep(2)
-        # self.TakeScreenshot('select startdate')
-        # self.click_on(self.payroll_map.year)
-        # self.click_on(self.payroll_map.select_year)
-        # self.click_on(self.payroll_map.prev_month)
-        # data_frame = data_frame.set_index('date')
-        # df = data_frame[(data_frame.index > '31/05/2019') & (data_frame.index <= '06/06/2019')]
+    def button_start(self, element):
+        time.sleep(2)
+        cont = 0
+        while (cont > 1):
+            self.driver.find_elements_by_xpath(element[cont])
+            cont = cont + 1
+        time.sleep(2)
+
+    def is_created(self):
+        time.sleep(5)
+        self.button_start(self.payroll_map.btn_start)
+        return
+
+    def click_start(self):
+        time.sleep(5)
+        self.click_on(self.payroll_map.btn_start)
+
+    def check_list(self):
+        time.sleep(5)
+        message = self.driver.find_elements_by_xpath(
+            self.payroll_map.open_emp, timeout=50)
+        self.TakeScreenshot('Check it is created')
+        print(message.text)
+        return "Empleados en la nómina" in message.text
+
+    def click_delete(self):
+        time.sleep(15)
+        self.click_on(self.payroll_map.btn_delete)
+        time.sleep(5)
+        self.click_on(self.payroll_map.btn_confirm_del)
+
+    def click_continue(self):
+        time.sleep(20)
+        self.click_on(self.payroll_map.btn_continue)

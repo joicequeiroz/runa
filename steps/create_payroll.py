@@ -10,19 +10,16 @@ def step_impl_create_payroll(context):
     payroll_page.click_new()
 
 
-@when(u'I find the payroll group assigned to me')
-def step_impl_get_group(context):
+@when(u'I fill in required fields')
+def step_impl_fill_in(context):
     payroll_page = PayrollPage(context)
-    payroll_page.group()
-
-
-@when(u'I inform the stardate')
-def step_impl_insert_startdate(context):
-    payroll_page = PayrollPage(context)
-    payroll_page.startdate()
+    payroll_page.fill_in_payroll()
 
 
 @then(u'the payroll should be generated automatically')
-def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then the payroll should be generated automatically')
+def step_impl_assert(context):
+    payroll_page = PayrollPage(context)
+    assert payroll_page.is_created()
+    # payroll_page.click_start()
+    # assert payroll_page.check_list()
+    # payroll_page.click_delete()

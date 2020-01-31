@@ -196,7 +196,7 @@ class WebBrowser():
 
     def SpecialClick(self, locatorType="xpath", locator=""):
         element = self.wait_element(locatorType, locator)
-        self.driver.execute_script('arguments[0].click();', element)
+        self.driver.execute_script('arguments[0].setRangeText();', element)
 
     def send_multiple_keys(self, element, text=[]):
         """Envia texto ao elemento
