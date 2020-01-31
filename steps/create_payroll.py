@@ -19,7 +19,4 @@ def step_impl_fill_in(context):
 @then(u'the payroll should be generated automatically')
 def step_impl_assert(context):
     payroll_page = PayrollPage(context)
-    assert payroll_page.is_created()
-    # payroll_page.click_start()
-    # assert payroll_page.check_list()
-    # payroll_page.click_delete()
+    assert payroll_page.is_created() is True

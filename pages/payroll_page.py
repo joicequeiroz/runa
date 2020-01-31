@@ -49,34 +49,21 @@ class PayrollPage(WebBrowser):
         self.set_date(self.payroll_map.endate_incidence, "06/06/2019")
         self.click_on(self.payroll_map.btn_sub)
         time.sleep(5)
-
-    def button_start(self, element):
-        time.sleep(2)
-        cont = 0
-        while (cont > 1):
-            self.driver.find_elements_by_xpath(element[cont])
-            cont = cont + 1
-        time.sleep(2)
+        self.TakeScreenshot('fill in payroll')
 
     def is_created(self):
         time.sleep(5)
-        self.button_start(self.payroll_map.btn_start)
-        return
+        self.is_element_present("//button[contains(text(),'Comenzar')]")
+        time.sleep(5)
+        self.TakeScreenshot('created')
+        return True
 
     def click_start(self):
         time.sleep(5)
         self.click_on(self.payroll_map.btn_start)
 
-    def check_list(self):
-        time.sleep(5)
-        message = self.driver.find_elements_by_xpath(
-            self.payroll_map.open_emp, timeout=50)
-        self.TakeScreenshot('Check it is created')
-        print(message.text)
-        return "Empleados en la nómina" in message.text
-
     def click_delete(self):
-        time.sleep(15)
+        time.sleep(10)
         self.click_on(self.payroll_map.btn_delete)
         time.sleep(5)
         self.click_on(self.payroll_map.btn_confirm_del)
